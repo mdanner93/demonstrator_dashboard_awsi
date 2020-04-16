@@ -30,7 +30,6 @@ class VideoCamera(object):
     def __init__(self):
         #self.video = cv2.VideoCapture('http://192.168.2.110:8888/')
         self.video = cv2.VideoCapture(0)
-        os.chdir('/home/pi/DeepPiCar/models/object_detection')
 
         self.parser = argparse.ArgumentParser()
         self.parser.add_argument(
@@ -39,8 +38,8 @@ class VideoCamera(object):
             '--label', help='File path of label file.', required=False)
         self.args = self.parser.parse_args()
 
-        self.args.model = 'data/model_result/mobilenet_ssd_v2_coco_quant_postprocess_edgetpu.tflite'
-        self.args.label = 'data/model_result/coco_labels.txt'
+        self.args.model = 'assets/models/mobilenet_ssd_v2_coco_quant_postprocess_edgetpu.tflite'
+        self.args.label = 'assets/models/coco_labels.txt'
 
         with open(self.args.label, 'r') as f:
             self.pairs = (l.strip().split(maxsplit=1) for l in f.readlines())
